@@ -1,47 +1,29 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
-import HomeScreen from './src/views/Home';
-import AboutScreen from './src/views/About';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 
-import Expo from 'expo';
+// Tab router 配置 
+import TabNav from './src/screens'
 
-import {
-  createRouter,
-  NavigationProvider,
-  StackNavigation,
-  TabNavigation,
-  TabNavigationItem as TabItem,
-} from '@expo/ex-navigation';
+import OrderTab from './src/views/Order'
 
-
-const Router = createRouter(() => ({
-  home: () => HomeScreen,
-  about: () => AboutScreen,
-}));
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <NavigationProvider router={Router}>
-        <StackNavigation 
-            defaultRouteConfig={{
-              navigationBar: {
-                backgroundColor: 'rgba(33,150,243,1)',
-                tintColor: '#ffffff',
-                translucent: true
-              }
-            }}
-            initialRoute={Router.getRoute('home')} />
-      </NavigationProvider>
-    );
-  }
-}
+export default StacksOverTabs = StackNavigator({
+  Root: {
+    screen: TabNav,
+  },
+  NotifSettings: {
+    screen: OrderTab,
+    navigationOptions: {
+      title: 'Notifications',
+      headerStyle: {
+        backgroundColor: '#0096ff'
+      },
+      headerTintColor: '#ffffff',
+    },
+  },
+});
 
 const styles = StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26,
-  },
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -49,9 +31,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  selectedTab: {
-
-  }
 });
 
 
