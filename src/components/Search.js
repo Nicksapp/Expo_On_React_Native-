@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default Search = () => (
+export default Search = ({ navigation }) => (
     <View style={[styles.searchWrapper,styles.center]}>
         <View style={{flex: 1}}>
             <View style={[styles.textInput,styles.center]}>
                <Ionicons name="ios-search-outline" size={24} style={{color: '#bdbdbd', top: 2}}/>
-                  <Text>输入商家、商品名称</Text>
+               <Text>输入商家、商品名称</Text>
             </View>
          </View>
     </View>

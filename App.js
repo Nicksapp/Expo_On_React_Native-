@@ -4,8 +4,8 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 
 // Tab router 配置 
 import TabNav from './src/screens'
-
 import OrderTab from './src/views/Order'
+import SearchView from './src/views/SearchView'
 
 export default StacksOverTabs = StackNavigator({
   Root: {
@@ -21,6 +21,18 @@ export default StacksOverTabs = StackNavigator({
       headerTintColor: '#ffffff',
     },
   },
+  SearchNavigator: {
+    screen: StackNavigator({
+      Search: {
+        screen: SearchView,
+        navigationOptions: {
+          header: null,
+        }
+      }
+    },{
+      mode: 'modal'
+    })
+  }
 });
 
 const styles = StyleSheet.create({
