@@ -6,8 +6,8 @@ export default Search = ({ navigation }) => (
     <View style={[styles.searchWrapper,styles.center]}>
         <View style={{flex: 1}}>
             <View style={[styles.textInput,styles.center]}>
-               <Ionicons name="ios-search-outline" size={24} style={{color: '#bdbdbd', top: 2}}/>
-               <Text>输入商家、商品名称</Text>
+               <Ionicons name="ios-search-outline" size={24} style={{color: '#bdbdbd', top: 1,marginRight: 3}}/>
+               <Text style={{color: '#333'}}>输入商家、商品名称</Text>
             </View>
          </View>
     </View>

@@ -11,7 +11,7 @@ export default StacksOverTabs = StackNavigator({
   Root: {
     screen: TabNav,
   },
-  NotifSettings: {
+  NotifSettings: {  // 测试 导航页
     screen: OrderTab,
     navigationOptions: {
       title: 'Notifications',
@@ -21,17 +21,12 @@ export default StacksOverTabs = StackNavigator({
       headerTintColor: '#ffffff',
     },
   },
-  SearchNavigator: {
-    screen: StackNavigator({
-      Search: {
-        screen: SearchView,
-        navigationOptions: {
-          header: null,
-        }
-      }
-    },{
-      mode: 'modal'
-    })
+  Search: {
+    screen: SearchView,
+    navigationOptions: {
+      title: 'Search',
+      header: null,
+    }    
   }
 });
 

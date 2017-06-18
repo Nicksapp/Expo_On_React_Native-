@@ -6,13 +6,18 @@ import { StyleSheet,
          Image, 
          ScrollView, 
          RefreshControl, 
-         TouchableOpacity, 
-         Dimensions,} from 'react-native';
-import Swiper from 'react-native-swiper'
+         TouchableOpacity, } from 'react-native';
+
+import styles from '../assets/styles/Home';
+import Swiper from 'react-native-swiper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { StackNavigator } from 'react-navigation';
 
+import { Constants, Svg } from 'expo';
+
 import Search from '../components/Search'
+import Star from '../components/Star'
+import ListItem from '../components/ListItemHome'
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -116,8 +121,10 @@ export default class HomeScreen extends React.Component {
 
     return (
         <View style={styles.container}>
-     
-            <Search />
+            <TouchableOpacity activeOpacity={1} onPress={() => navigate('Search')}>
+                <Search />
+            </TouchableOpacity>
+            
        
             <ScrollView
 					style={styles.container}
@@ -134,7 +141,7 @@ export default class HomeScreen extends React.Component {
 							progressBackgroundColor="white"
 						/>
 					}>     
-                <Swiper  height={200} horizontal={true} 
+                <Swiper height={200} horizontal={true} 
                     dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
                     activeDot={<View style={{backgroundColor: '#000', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
                     paginationStyle={{bottom: 5}}>
@@ -164,32 +171,56 @@ export default class HomeScreen extends React.Component {
                     </View>
                 </Swiper>
 
+                <View style={styles.midContainer}>
+                    <View style={[styles.midItem,{borderBottomWidth: .5,borderRightWidth:.5,borderBottomColor: '#eee',borderRightColor: '#eee'}]}>
+                        <View style={{flex: 1, justifyContent: 'center'}}>
+                            <Text style={styles.textTitle}>热卖套餐</Text>
+                            <Text style={[styles.smText,{marginTop:5}]}>附近畅销美食</Text>
+                        </View>
+                        <Image source={require('../assets/img/home01.png')} style={{width: 40,height: 40}}></Image>
+                    </View>
+                    <View style={[styles.midItem,{borderBottomWidth: .5,borderBottomColor: '#eee'}]}>
+                        <View style={{flex: 1, justifyContent: 'center'}}>
+                            <Text style={styles.textTitle}>霸王餐</Text>
+                            <Text style={[styles.smText,{marginTop:5}]}>领20元红包</Text>
+                        </View>
+                        <Image source={require('../assets/img/home02.png')} style={{width: 40,height: 40}}></Image>
+                    </View>
+                    <View style={[styles.midItem,{borderRightWidth: .5,borderRightColor: '#eee'}]}>
+                        <View style={{flex: 1, justifyContent: 'center'}}>
+                            <Text style={styles.textTitle}>营养快餐</Text>
+                            <Text style={[styles.smText,{marginTop:5}]}>15元吃饱</Text>
+                        </View>
+                        <Image source={require('../assets/img/home03.png')} style={{width: 40,height: 40}}></Image>
+                    </View>
+                    <View style={styles.midItem}>
+                        <View style={{flex: 1, justifyContent: 'center'}}>
+                            <Text style={styles.textTitle}>不止5折</Text>
+                            <Text style={[styles.smText,{marginTop:5}]}>周五半价日</Text>
+                        </View>
+                        <Image source={require('../assets/img/home04.png')} style={{width: 40,height: 40}}></Image>
+                    </View>
+                </View>
+
                 <View style={styles.recommendContainer}>
                     <View style={styles.groupHeader}>
                         <Text style={styles.textHeader}>推荐商家</Text>
                     </View>
-                    <TouchableOpacity onPress={() => navigate('Search')}>
-                        <View style={styles.cellContainer}>
-                            <View style={{flex: 1}}>
-                                <Image style={{flex: 1}}  source={{uri: 'http://images.cangdu.org/15c644f3580142.jpeg'}}></Image>
-                            </View>
-                            <View style={{flex: 4, flexDirection: 'column', justifyContent: 'space-between', marginLeft: 5}}>
-                                    <Text style={styles.textTitle}>食欲中西简餐</Text>
-                                    <View style={{flexDirection: 'row'}}>
-                                        <Text style={styles.textRed}>4.4</Text>
-                                        <Text style={[styles.textGrey,{fontSize: 10,marginLeft: 5,marginTop: 3}]}>月售516单</Text>
-                                    </View>
-                                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                                        <Text style={[styles.textGrey,styles.textSizeMid]}>￥30起送 / 配送费￥3 </Text>
-                                        <View style={{flexDirection: 'row'}}>
-                                            <Text style={[styles.textLightGrey,styles.textSizeMid]}>855m / </Text>
-                                            <Text style={[styles.textBlue,styles.textSizeMid]}>48分钟</Text>  
-                                        </View>
-                                    </View>    
-                            </View>
-                        </View>
+                    <TouchableOpacity key={1} activeOpacity={1} onPress={() => navigate('Search')}>
+                        <ListItem />
                     </TouchableOpacity>
-                    
+                    <TouchableOpacity key={2} activeOpacity={1} onPress={() => navigate('Search')}>
+                        <ListItem />
+                    </TouchableOpacity>
+                    <TouchableOpacity key={3} activeOpacity={1} onPress={() => navigate('Search')}>
+                        <ListItem />
+                    </TouchableOpacity>
+                    <TouchableOpacity key={4} activeOpacity={1} onPress={() => navigate('Search')}>
+                        <ListItem />
+                    </TouchableOpacity>
+                    <TouchableOpacity key={5} activeOpacity={1} onPress={() => navigate('Search')}>
+                        <ListItem />
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </View>
@@ -198,83 +229,4 @@ export default class HomeScreen extends React.Component {
   }
 }
 
-const width = Dimensions.get('window').width;  // 屏幕宽度
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },  
-  slide1: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingTop: 10,
-    flexWrap: 'wrap',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e4e4e4'
-  },
-  swiperListItem: {
-    width: width/4,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 25,
-  },
-  listImage: {
-    width: 42,
-    height: 42,
-    marginBottom: 10
-  },
-  listTitle: {
-    color: '#666',
-    fontSize: 12
-  },
-
-  recommendContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderTopColor: '#e4e4e4',
-    marginTop: 10,
-    paddingLeft: 5,
-    paddingRight: 5,
-  },
-  groupHeader: {
-    padding: 10,
-  },
-  textHeader: {
-      fontSize: 16,
-      fontWeight: "500",
-  },
-  textTitle: {
-      fontSize: 15,
-      fontWeight: "500",
-  },
-  cellContainer: {
-      flexDirection: 'row',
-      height: 80,
-      paddingBottom: 10,
-      paddingLeft: 5,
-      paddingRight: 5,
-  },
-
-  textRed: {
-      color: '#ff6000'
-  },
-  textGrey: {
-      color: '#666'
-  },
-  textBlue: {
-      color: '#3190e8'
-  },
-  textLightGrey: {
-      color: '#999'
-  },
-  textSizeMid: {
-      fontSize: 12
-  }
-});
